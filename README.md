@@ -25,6 +25,6 @@
 #### STEP-4: EXEC in technonies/erpnext 
 		
 		--> bench new-site <your-site.com> --admin-password '321' --mariadb-root-username root --db-host mariadbb 
-		--> bench --site site.net install-app erpnext 
-		--> cd /home/frappe/frappe-bench/sites && echo 'site.net' >currentsite.txt 
+		--> bench --site <your-site.com> install-app erpnext 
+		--> cd /home/frappe/frappe-bench/sites && echo '<your-site.com>' >currentsite.txt 
 		--> cd /home/frappe/frappe-bench && bench start
