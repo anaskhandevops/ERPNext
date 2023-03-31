@@ -21,7 +21,7 @@
 
 #### STEP-3: RUN
 
-        docker run -d --network mynet --name mariadbb --env MARIADB_ROOT_PASSWORD=12345 -v /home/tlp/conf:/etc/mysql/mariadb.conf.d technonies/erpnextdb 
+        docker run -d --network mynet --name mariadbb --env MARIADB_ROOT_PASSWORD=12345 -v /home/tlp/conf/mariadb.cnf:/etc/mysql/conf.d technonies/erpnextdb 
         docker run -it -d --network mynet --name erp -p 8000:8000 -p 9000:9000 -p3306:3306 technonies/erpnext
 
 #### STEP-4: EXEC in technonies/erpnext 
