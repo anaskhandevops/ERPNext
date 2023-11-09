@@ -1,3 +1,7 @@
+## Install erpnext app with docker
+![Docker](https://img.shields.io/badge/Docker-23.0.3-%232496ED.svg?style=for-the-badge&logo=docker&logoColor=white) ![ERPNext](https://img.shields.io/badge/ERPNext-v14-%2343853D.svg?style=for-the-badge&logo=erpnext&logoColor=white)
+
+
 ### CREATE NETWORK
   
       docker network create erpnet
