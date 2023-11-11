@@ -5,7 +5,7 @@ on:
     branches: [ "erpnext-with-github-actions" ]
 
 jobs:
-  deploy-borger-projects:
+  deploy-erp:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,20 +21,24 @@ jobs:
     #         echo "    ServerAliveInterval 20" >> ~/.ssh/config
     #         echo "    TCPKeepAlive no" >> ~/.ssh/config
             
-    - name: Install sshpass
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y sshpass
+    - name: SSH and run commands
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        port: 22
+        script: |
+            ls -la
+            pwd
 
-    - name: Update Server and Install Dependencies
-      run: |
-        sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
-            echo 'Hello from remote server' && \
-            apt-get update && \
-            apt-get install -y git docker.io docker-compose && \
-            git clone -b erpnext-with-github-actions https://github.com/1DevOps2/ERPNext.git && cd ERPNext && \
-            docker-compose -f docker-compose.yml up --build -d && \
-            exit"
+        # run: |
+        #     echo 'Hello from remote server' && \
+        #     apt-get update && \
+        #     apt-get install -y git docker.io docker-compose && \
+        #     git clone -b erpnext-with-github-actions https://github.com/1DevOps2/ERPNext.git && cd ERPNext && \
+        #     docker-compose -f docker-compose.yml up --build -d && \
+        #     exit"
 
     - name: cleanup
       run: rm -rf ~/.ssh
