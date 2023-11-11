@@ -2,7 +2,7 @@ name: deploy erp app
 
 on:
   push:
-    branches: [ "erpnext-with-github-actions" ]
+    branches: [ "corrupted-erpnext-with-github-actions" ]
 
 jobs:
   deploy-borger-projects:
