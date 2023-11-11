@@ -11,9 +11,8 @@ jobs:
     steps:
     - name: update system
       run: |
-        sudo su
-        apt-get update
-        apt-get upgrade -y
+        sudo apt-get update
+        sudo apt-get upgrade -y
 
     - name: install git
       run: |
@@ -21,19 +20,19 @@ jobs:
 
     - name: install docker & docker-compose
       run: |
-        apt-get install docker.io docker-compose -y 
+        sudo apt-get install docker.io docker-compose -y 
 
     - name: clone the project
       run: |
-        git clone -b erpnext-with-github-actions https://github.com/1DevOps2/ERPNext.git 
+        sudo git clone -b erpnext-with-github-actions https://github.com/1DevOps2/ERPNext.git 
 
     - name: run the docker containers
       run: |
         cd ERPNext
-        docker-compose up --build -d
+        sudo docker-compose up --build -d
 
     - name: check running 
-      run: docker ps
+      run: sudo docker ps
 
 
             
