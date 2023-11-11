@@ -23,7 +23,7 @@
 
        cd frappe-bench && bench new-site erp.net --admin-password '321' --mariadb-root-username root --db-host erpdb
        bench --site erp.net install-app erpnext 
-#### to install posawesome
+#### to install pos-awesome
 
        bench get-app branch version-14 https://github.com/yrestom/POS-Awesome.git
        bench setup requirements
