@@ -9,21 +9,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: install ssh keys
-      run: |
-        install -m 600 -D /dev/null ~/.ssh/id_rsa
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+    # - name: install ssh keys
+    #   run: |
+    #     install -m 600 -D /dev/null ~/.ssh/id_rsa
+    #     echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+    #     ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
 
-    - name: Create SSH config file
-      run: |
-            echo "Host *" > ~/.ssh/config
-            echo "    ServerAliveInterval 20" >> ~/.ssh/config
-            echo "    TCPKeepAlive no" >> ~/.ssh/config
+    # - name: Create SSH config file
+    #   run: |
+    #         echo "Host *" > ~/.ssh/config
+    #         echo "    ServerAliveInterval 20" >> ~/.ssh/config
+    #         echo "    TCPKeepAlive no" >> ~/.ssh/config
             
+    - name: Install sshpass
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y sshpass
+
     - name: Update Server and Install Dependencies
       run: |
-        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
+        sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
             echo 'Hello from remote server' && \
             apt-get update && \
             apt-get install -y git docker.io docker-compose && \
