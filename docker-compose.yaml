@@ -17,6 +17,6 @@ services:
       - "9000:9000"
       - "3306:3306"
     volumes:
-      - ./startup-script:/docker-entrypoint-initdb.d
+      - /startup-script:/docker-entrypoint-initdb.d
 
 
