@@ -12,7 +12,6 @@ jobs:
     - name: update system
       run: |
         sudo apt-get update
-        sudo apt-get upgrade -y
 
     - name: install git
       run: |
@@ -20,7 +19,17 @@ jobs:
 
     - name: install docker & docker-compose
       run: |
-        sudo apt-get install docker.io docker-compose -y 
+        sudo apt-get update
+        sudo apt-get install ca-certificates curl gnupg
+        sudo install -m 0755 -d /etc/apt/keyrings
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+        sudo chmod a+r /etc/apt/keyrings/docker.gpg
+        echo \
+          "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+          "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+          sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+        sudo apt-get update 
+        sudo apt-get install docker.io docker-compose-plugin docker-compose -y
 
     - name: clone the project
       run: |
@@ -31,7 +40,7 @@ jobs:
         cd ERPNext
         sudo docker-compose up --build -d
 
-    - name: check running 
+    - name: check running docker container
       run: sudo docker ps
 
 
