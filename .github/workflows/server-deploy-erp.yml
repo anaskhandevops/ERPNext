@@ -29,16 +29,28 @@ jobs:
         password: ${{ secrets.SSH_PASSWORD }}
         # port: 22
         script: |
-            ls -la
-            pwd
+            # installing docker
+            for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+            sudo apt-get update
+            sudo apt-get install ca-certificates curl gnupg
+            sudo install -m 0755 -d /etc/apt/keyrings
+            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+            sudo chmod a+r /etc/apt/keyrings/docker.gpg
+            echo \
+              "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+              "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+              sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+            sudo apt-get update 
+            sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-        # run: |
-        #     echo 'Hello from remote server' && \
-        #     apt-get update && \
-        #     apt-get install -y git docker.io docker-compose && \
-        #     git clone -b erpnext-with-github-actions https://github.com/1DevOps2/ERPNext.git && cd ERPNext && \
-        #     docker-compose -f docker-compose.yml up --build -d && \
-        #     exit"
+            # installing git
+            sudo apt-get install git -y
+
+            # clone the project
+            git clone -b erpnext-with-github-actions https://github.com/1DevOps2/ERPNext.git 
+
+            # run the docker containers
+            cd ERPNext && docker-compose up --build -d
 
     - name: cleanup
       run: rm -rf ~/.ssh
