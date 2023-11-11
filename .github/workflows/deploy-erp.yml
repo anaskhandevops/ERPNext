@@ -1,0 +1,34 @@
+name: deploy erp app
+
+on:
+  push:
+    branches: [ "erpnext-with-github-actions" ]
+
+jobs:
+  deploy-borger-projects:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: install ssh keys
+      run: |
+        install -m 600 -D /dev/null ~/.ssh/id_rsa
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+
+    - name: Create SSH config file
+      run: |
+            echo "Host *" > ~/.ssh/config
+            echo "    ServerAliveInterval 20" >> ~/.ssh/config
+            echo "    TCPKeepAlive no" >> ~/.ssh/config
+            
+    - name: Update Server and Install Dependencies
+      run: |
+        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
+            sudo apt-get update && \
+            sudo apt-get install -y git docker.io docker-compose && \
+            git clone -b erpnext-with-github-actions https://github.com/1DevOps2/ERPNext.git && cd ERPNext && \
+            docker-compose -f docker-compose.yml up --build -d && \
+            exit"
+
+    - name: cleanup
+      run: rm -rf ~/.ssh

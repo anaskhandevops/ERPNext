@@ -7,7 +7,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 1QWERT2
     volumes:
-      - /ERPNext/conf:/etc/mysql/conf.d
+      - ./conf:/etc/mysql/conf.d
 
   erp:
     image: 1devops2/erpnext:14
