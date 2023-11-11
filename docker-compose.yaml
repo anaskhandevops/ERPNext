@@ -17,6 +17,12 @@ services:
       - "9000:9000"
       - "3306:3306"
     volumes:
-      - /startup-script:/docker-entrypoint-initdb.d
+      - ./startup-script:/docker-entrypoint-initdb.d
+    depends_on:
+      - erpdb
+    stdin_open: true
+    tty: true
 
-
+volumes:
+  startup-script:
+    driver: local
