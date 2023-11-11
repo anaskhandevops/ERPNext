@@ -21,7 +21,7 @@ jobs:
     #         echo "    ServerAliveInterval 20" >> ~/.ssh/config
     #         echo "    TCPKeepAlive no" >> ~/.ssh/config
             
-    - name: SSH and run commands
+    - name: SSH and DEPLOY to the server
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.SSH_HOST }}
@@ -41,7 +41,7 @@ jobs:
               "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
               sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
             sudo apt-get update 
-            sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+            sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose -y
 
             # installing git
             sudo apt-get install git -y
