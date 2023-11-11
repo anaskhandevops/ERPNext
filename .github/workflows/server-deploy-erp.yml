@@ -24,8 +24,8 @@ jobs:
     - name: Update Server and Install Dependencies
       run: |
         ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
-            sudo apt-get update && \
-            sudo apt-get install -y git docker.io docker-compose && \
+            apt-get update && \
+            apt-get install -y git docker.io docker-compose && \
             git clone -b erpnext-with-github-actions https://github.com/1DevOps2/ERPNext.git && cd ERPNext && \
             docker-compose -f docker-compose.yml up --build -d && \
             exit"
