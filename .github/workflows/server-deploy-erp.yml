@@ -24,6 +24,7 @@ jobs:
     - name: Update Server and Install Dependencies
       run: |
         ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
+            echo 'Hello from remote server' && \
             apt-get update && \
             apt-get install -y git docker.io docker-compose && \
             git clone -b erpnext-with-github-actions https://github.com/1DevOps2/ERPNext.git && cd ERPNext && \
