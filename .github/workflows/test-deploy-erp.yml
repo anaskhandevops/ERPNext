@@ -1,0 +1,39 @@
+name: deploy erp app
+
+on:
+  push:
+    branches: [ "erpnext-with-github-actions" ]
+
+jobs:
+  deploy-erp:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: update system
+      run: |
+        apt-get update
+        apt-get upgrade -y
+
+    - name: install git
+      run: |
+        apt-get install git -y
+
+    - name: install docker & docker-compose
+      run: |
+        apt-get install docker.io docker-compose -y 
+
+    - name: clone the project
+      run: |
+        git clone -b erpnext-with-github-actions https://github.com/1DevOps2/ERPNext.git 
+
+    - name: run the docker containers
+      run: |
+        cd ERPNext
+        docker-compose up --build -d
+
+    - name: check running 
+      run: docker ps
+
+
+            
+
