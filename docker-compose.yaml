@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  erpdb:
+    image: 1devops2/erpnextdb:14
+    container_name: erpdb
+    environment:
+      MYSQL_ROOT_PASSWORD: 1QWERT2
+    volumes:
+      - /home/ubuntu/conf:/etc/mysql/conf.d
+
+  erp:
+    image: 1devops2/erpnext:14
+    container_name: erp
+    ports:
+      - "8000:8000"
+      - "9000:9000"
+      - "3306:3306"
+    volumes:
+      - ./startup-script:/docker-entrypoint-initdb.d
+
+
