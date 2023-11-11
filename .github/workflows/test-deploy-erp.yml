@@ -11,16 +11,13 @@ jobs:
     steps:
     - name: update system
       run: |
-        pwd
-        uname
-        cat /etc/os-release
-        ls -lhrta
-        sudo apt-get update
-        sudo apt-get upgrade -y
+        sudo su
+        apt-get update
+        apt-get upgrade -y
 
     - name: install git
       run: |
-        apt-get install git -y
+        sudo apt-get install git -y
 
     - name: install docker & docker-compose
       run: |
