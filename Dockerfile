@@ -68,14 +68,8 @@ RUN cd /home/frappe/frappe-bench && bench get-app erpnext https://github.com/fra
 ## STEP-13: Install mariadb client ##
 RUN sudo apt-get install -y mariadb-client
 
-
-
-## STEP-13: create a site in frappe bench ##
-#RUN bench new-site $siteName \
-#     --admin-password $adminPass \
-#     --mariadb-root-username $dbuser \
-#     --mariadb-root-password $mysqlPass  \
-#     --db-host $hname
+COPY setup-erp.sh /home/frappe/frappe-bench
+RUN sudo chmod +x /home/frappe/frappe-bench/setup-erp.sh
 
 ## STEP-14: EXpose Ports ##
 EXPOSE 8000 9000 3306

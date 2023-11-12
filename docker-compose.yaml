@@ -10,19 +10,14 @@ services:
       - ./conf:/etc/mysql/conf.d
 
   erp:
-    image: 1devops2/erpnext:14
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: erp
     ports:
       - "8000:8000"
       - "9000:9000"
       - "3306:3306"
-    volumes:
-      - ./startup-script:/docker-entrypoint-initdb.d
+    command: ["/bin/bash", "-c", "/home/frappe/frappe-bench/setup-erp.sh"]
     depends_on:
       - erpdb
-    stdin_open: true
-    tty: true
-
-volumes:
-  startup-script:
-    driver: local
