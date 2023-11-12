@@ -5,6 +5,8 @@ services:
     image: 1devops2/erpnextdb:14
     container_name: erpdb
     environment:
+      MARIADB_USER: erp
+      MARIADB_USER_PASSWORD: 1QERT2
       MARIADB_ROOT_PASSWORD: 1QWERT2
       MARIADB_DATABASE: erp
     volumes:
