@@ -5,15 +5,18 @@ services:
     image: 1devops2/erpnextdb:14
     container_name: erpdb
     environment:
-      MYSQL_ROOT_PASSWORD: 1QWERT2
+      MARIADB_ROOT_PASSWORD: 1QWERT2
+      MARIADB_DATABASE: erp
     volumes:
       - ./conf:/etc/mysql/conf.d
+    restart: unless-stopped 
 
   erp:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: erp
+    restart: unless-stopped
     ports:
       - "8000:8000"
       - "9000:9000"

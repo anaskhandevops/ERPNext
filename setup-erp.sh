@@ -6,13 +6,14 @@ SITE_NAME="erp.net"
 ADMIN_PASSWORD='321'
 MARIADB_ROOT_USERNAME='root'
 MARIADB_ROOT_PASSWORD='1QWERT2'
+MARIADB_DATABASE='erp'
 DB_HOST='erpdb'
 
 # Move to Frappe Bench directory
 cd $FRAPPE_BENCH_DIR 
 
 # Create a new site
-bench new-site $SITE_NAME --admin-password $ADMIN_PASSWORD --mariadb-root-username $MARIADB_ROOT_USERNAME --mariadb-root-password $MARIADB_ROOT_PASSWORD --db-host $DB_HOST 
+bench new-site $SITE_NAME --admin-password $ADMIN_PASSWORD --db-host $DB_HOST --mariadb-root-username $MARIADB_ROOT_USERNAME --mariadb-root-password $MARIADB_ROOT_PASSWORD --db-name $MARIADB_DATABASE 
 
 # Install ERPNext app
 bench --site $SITE_NAME install-app erpnext 
