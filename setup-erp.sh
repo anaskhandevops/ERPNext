@@ -3,18 +3,21 @@ set -x
 
 # Define variables
 FRAPPE_BENCH_DIR="/home/frappe/frappe-bench"
-SITE_NAME="erp.net"
+SITE_NAME="erp1.net"
 ADMIN_PASSWORD='321'
-MARIADB_ROOT_USERNAME='erp'
-MARIADB_ROOT_PASSWORD='1QWERT2'
+MARIADB_ROOT_USERNAME='root'
+MARIADB_ROOT_PASSWORD='whitecoke'
 MARIADB_DATABASE='erp'
 DB_HOST='erpdb'
+DB_PORT='3306'
 
+echo $MARIADB_ROOT_PASSWORD
+echo $SITE_NAME
 # Move to Frappe Bench directory
 cd $FRAPPE_BENCH_DIR 
 
 # Create a new site
-bench new-site $SITE_NAME --admin-password $ADMIN_PASSWORD --db-host $DB_HOST --mariadb-root-username $MARIADB_ROOT_USERNAME --mariadb-root-password $MARIADB_ROOT_PASSWORD --db-name $MARIADB_DATABASE 
+bench new-site $SITE_NAME --admin-password $ADMIN_PASSWORD --db-host $DB_HOST --db-port $DB_PORT --mariadb-root-username $MARIADB_ROOT_USERNAME --mariadb-root-password $MARIADB_ROOT_PASSWORD --db-name $MARIADB_DATABASE  --force --verbose
 
 # Install ERPNext app
 bench --site $SITE_NAME install-app erpnext 
