@@ -1,5 +1,6 @@
 #!/bin/bash
 set -x
+
 # Define variables
 FRAPPE_BENCH_DIR="/home/frappe/frappe-bench"
 SITE_NAME="erp.net"
