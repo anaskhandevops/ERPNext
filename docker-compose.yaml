@@ -5,18 +5,10 @@ services:
     image: mariadb:latest
     container_name: erpdb
     environment:
-#      MARIADB_USER: erp
-#      MARIADB_USER_PASSWORD: whitecoke
       MARIADB_ROOT_PASSWORD: whitecoke
-#      MARIADB_DATABASE: erp
     volumes:
       - ./conf:/etc/mysql/conf.d
     restart: unless-stopped 
-    healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -pwhitecoke"]
-      interval: 5s
-      timeout: 10s
-      retries: 5
 
   erp:
     build:
@@ -27,7 +19,6 @@ services:
     ports:
       - "8000:8000"
       - "9000:9000"
-      - "3306:3306"
     command: ["/bin/bash", "-c", "/home/frappe/frappe-bench/setup-erp.sh"]
     depends_on:
        - erpdb

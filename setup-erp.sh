@@ -7,7 +7,7 @@ SITE_NAME="erp1.net"
 ADMIN_PASSWORD='321'
 MARIADB_ROOT_USERNAME='root'
 MARIADB_ROOT_PASSWORD='whitecoke'
-MARIADB_DATABASE='erp'
+#MARIADB_DATABASE='erpdb'
 DB_HOST='erpdb'
 DB_PORT='3306'
 
@@ -17,7 +17,7 @@ echo $SITE_NAME
 cd $FRAPPE_BENCH_DIR 
 
 # Create a new site
-bench new-site $SITE_NAME --admin-password $ADMIN_PASSWORD --db-host $DB_HOST --db-port $DB_PORT --mariadb-root-username $MARIADB_ROOT_USERNAME --mariadb-root-password $MARIADB_ROOT_PASSWORD --db-name $MARIADB_DATABASE  --force --verbose
+bench new-site $SITE_NAME --admin-password $ADMIN_PASSWORD --db-host $DB_HOST --db-port $DB_PORT --mariadb-root-username $MARIADB_ROOT_USERNAME --mariadb-root-password $MARIADB_ROOT_PASSWORD   --force 
 
 # Install ERPNext app
 bench --site $SITE_NAME install-app erpnext 
