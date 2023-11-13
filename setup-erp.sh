@@ -26,7 +26,7 @@ bench --site $SITE_NAME install-app erpnext
 bench get-app branch version-14 https://github.com/yrestom/POS-Awesome.git 
 bench setup requirements 
 bench build --app posawesome 
-bench --site $SITE_NAME install-app posawesome 
+bench --site $SITE_NAME install-app posawesome --admin-password $ADMIN_PASSWORD --db-host $DB_HOST --db-port $DB_PORT --mariadb-root-username $MARIADB_ROOT_USERNAME --mariadb-root-password $MARIADB_ROOT_PASSWORD   --force 
 
 # Start the app
 cd $FRAPPE_BENCH_DIR/sites && echo $SITE_NAME > currentsite.txt 
