@@ -9,6 +9,8 @@ services:
     volumes:
       - ./conf:/etc/mysql/conf.d
     restart: unless-stopped 
+    ports:
+      - "3306:3306"
 
   erp:
     build:
