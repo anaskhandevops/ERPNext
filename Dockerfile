@@ -69,7 +69,9 @@ RUN cd /home/frappe/frappe-bench && bench get-app erpnext https://github.com/fra
 RUN sudo apt-get install -y mariadb-client
 
 COPY setup-erp.sh /home/frappe/frappe-bench
-RUN sudo chmod +x /home/frappe/frappe-bench/setup-erp.sh
+RUN sudo chmod a+x /home/frappe/frappe-bench/setup-erp.sh
 
 ## STEP-14: EXpose Ports ##
 EXPOSE 8000 9000 3306
+
+CMD ["/home/frappe/frappe-bench/setup-erp.sh"]

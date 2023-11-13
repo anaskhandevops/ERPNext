@@ -19,6 +19,6 @@ services:
     ports:
       - "8000:8000"
       - "9000:9000"
-    command: ["/bin/bash", "-c", "/home/frappe/frappe-bench/setup-erp.sh"]
+    # command: ["/bin/bash", "-c", "/home/frappe/frappe-bench/setup-erp.sh"]
     depends_on:
        - erpdb
