@@ -54,7 +54,7 @@ jobs:
             bench build --app posawesome && \
             bench --site erp.net install-app posawesome && \
             cd /home/frappe/frappe-bench/sites && echo 'erp.net' >currentsite.txt && \
-            cd /home/frappe/frappe-bench && bench start
+            cd /home/frappe/frappe-bench && bench start > bench_log.txt 2>&1 &
             "
 
 
