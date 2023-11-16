@@ -21,7 +21,7 @@ jobs:
             # installing docker
             # sudo apt-get install docker.io -y
 
-            # installing git
+            # installing /git
             # sudo apt-get install git -y
 
             # clone the project
