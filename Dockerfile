@@ -74,4 +74,4 @@ RUN sudo chmod a+x /home/frappe/frappe-bench/setup-erp.sh
 ## STEP-14: EXpose Ports ##
 EXPOSE 8000 9000 3306
 
-CMD ["/home/frappe/frappe-bench/setup-erp.sh"]
+CMD ["/bin/bash", "-c", "/home/frappe/frappe-bench/setup-erp.sh"]
