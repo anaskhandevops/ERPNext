@@ -10,6 +10,6 @@ set -x
             bench build --app posawesome && \
             bench --site erp.net install-app posawesome && \
             cd /home/frappe/frappe-bench/sites && echo 'erp.net' >currentsite.txt && \
-            cd /home/frappe/frappe-bench && nohup bench start > /dev/null 2>&1 &
+            cd /home/frappe/frappe-bench &&  bench start 
             exit
             "

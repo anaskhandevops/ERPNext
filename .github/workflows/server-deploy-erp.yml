@@ -42,8 +42,17 @@ jobs:
             # RUN FRAPPE-APP CONTAINER
             docker run -it --network erpnet --name erp -p 8000:8000 -p 9000:9000 -p3306:3306 -d 1devops2/erpnext:14
 
-            # Exec to ERp container
-            chmod +x setup-erp.sh && ./setup-erp.sh
+            docker exec erp bash -c " 
+            cd frappe-bench && \
+            bench new-site erp.net --admin-password '321' --mariadb-root-username root --mariadb-root-password 1QWERT2 --db-host erpdb && \
+            bench --site erp.net install-app erpnext && \
+            bench get-app branch version-14 https://github.com/yrestom/POS-Awesome.git && \
+            bench setup requirements && \
+            bench build --app posawesome && \
+            bench --site erp.net install-app posawesome && \
+            cd /home/frappe/frappe-bench/sites && echo 'erp.net' >currentsite.txt && \
+            cd /home/frappe/frappe-bench &&  bench start 
+            "
 
             # exit the machine
             exit
