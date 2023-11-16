@@ -27,7 +27,7 @@ RUN apt-get install -y python3-dev
 ## STEP-3: Install setuptools and pip (Python's Package Manager) ##
 RUN apt-get install -y python3-setuptools python3-pip python3.10-venv
 
-## STEP-4: Install virtualenv ##
+## STEP-4: Install virtualenv ##.
 RUN apt-get install -y virtualenv
 
 ## STEP-5: install Redis ##
