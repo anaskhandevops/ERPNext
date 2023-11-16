@@ -28,7 +28,7 @@ jobs:
             git clone -b erpnext-with-github-actions https://github.com/1DevOps2/ERPNext.git 
 
             # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition.
-            sudo sysctl vm.overcommit_memory=1
+            # sudo sysctl vm.overcommit_memory=1
 
             # navigate to cloned repo
             cd ERPNext 
@@ -43,7 +43,7 @@ jobs:
             docker run -it --network erpnet --name erp -p 8000:8000 -p 9000:9000 -p3306:3306 -d 1devops2/erpnext:14
 
             # Exec to ERp container
-            docker exec -it erp bash -c "
+            docker exec -e TERM=xterm -it erp bash -c "
             cd frappe-bench && \
             bench new-site erp.net --admin-password '321' --mariadb-root-username root --mariadb-root-password 1QWERT2 --db-host erpdb && \
             bench --site erp.net install-app erpnext && \
