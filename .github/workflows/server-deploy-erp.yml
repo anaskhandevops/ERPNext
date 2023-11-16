@@ -39,7 +39,7 @@ jobs:
             # RUN MARIADB CONTAINER
             pwd
             ls -lhart
-            docker run -it  --net erpnet --name erpdb -e MYSQL_ROOT_PASSWORD=1QWERT2 -v conf:/etc/mysql/conf.d -d 1devops2/erpnextdb:14
+            docker run -it  --net erpnet --name erpdb -e MYSQL_ROOT_PASSWORD=1QWERT2 -v $(pwd)/conf:/etc/mysql/conf.d -d 1devops2/erpnextdb:14
 
             # RUN FRAPPE-APP CONTAINER
             docker run -it --network erpnet --name erp -p 8000:8000 -p 9000:9000 -p3306:3306 -d 1devops2/erpnext:14
