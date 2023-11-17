@@ -16,7 +16,7 @@ ENV benchPath=bench-repo \
     frappeRepo="https://github.com/frappe/frappe" \
     erpnextRepo="https://github.com/frappe/erpnext"
 
-RUN apt-get update && apt-get upgrade -y && apt-get install sudo -y
+RUN apt-get update && apt-get upgrade -y && apt-get install nano net-tools screen sudo -y
 
 ## STEP-1: Install git ##
 RUN apt-get install -y git
@@ -68,11 +68,6 @@ RUN cd /home/frappe/frappe-bench && bench get-app erpnext https://github.com/fra
 ## STEP-13: Install mariadb client ##
 RUN sudo apt-get install -y mariadb-client
 
-# Install Supervisor
-RUN sudo apt-get install -y supervisor
-
-# Add Supervisor configuration for services
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ## STEP-14: EXpose Ports ##
 EXPOSE 8000 9000 3306
