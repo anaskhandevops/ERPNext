@@ -27,7 +27,7 @@ jobs:
             # sudo apt-get install git -y
 
             # clone the project
-            git clone -b erpnext-with-github-actions https://github.com/1DevOps2/ERPNext.git 
+            # git clone -b erpnext-with-github-actions https://github.com/1DevOps2/ERPNext.git 
 
             # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition.
             # sudo sysctl vm.overcommit_memory=1
@@ -40,11 +40,11 @@ jobs:
 
             # RUN MARIADB CONTAINER.
             docker run -it  --net erpnet --name erpdb -e MYSQL_ROOT_PASSWORD=1QWERT2 -v $(pwd)/conf:/etc/mysql/conf.d -d 1devops2/erpnextdb:14
-
+            sleep 10
             # RUN FRAPPE-APP CONTAINER
             # docker build -t 1devops2/erpnext:actions .
             docker run -it --network erpnet --name erp -p 8000:8000 -p 9000:9000 -p3306:3306 -d 1devops2/erpnext:actions
-
+            sleep 10
             docker exec erp bash -c " 
             cd frappe-bench && \
             bench new-site erp.net --admin-password '321' --mariadb-root-username root --mariadb-root-password 1QWERT2 --db-host erpdb && \
