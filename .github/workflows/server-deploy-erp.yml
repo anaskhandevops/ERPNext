@@ -38,7 +38,7 @@ jobs:
             # CREATE NETWORKf
             # docker network create erpnet
 
-            # RUN MARIADB CONTAINER.
+            # RUN MARIADB CONTAINER
             docker run -it  --net erpnet --name erpdb -e MYSQL_ROOT_PASSWORD=1QWERT2 -v $(pwd)/conf:/etc/mysql/conf.d -d 1devops2/erpnextdb:14
             sleep 10
             # RUN FRAPPE-APP CONTAINER
