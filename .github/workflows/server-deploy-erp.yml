@@ -33,7 +33,6 @@ jobs:
             # sudo sysctl vm.overcommit_memory=1
 
             # navigate toe cloned repo
-            sudo apt-get install screen -y && \
             cd ERPNext 
            
             # CREATE NETWORK
