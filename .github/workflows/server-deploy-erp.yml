@@ -33,6 +33,7 @@ jobs:
             # sudo sysctl vm.overcommit_memory=1
 
             # navigate toe cloned repo
+            sudo apt-get install screen -y && \
             cd ERPNext 
            
             # CREATE NETWORK
@@ -54,7 +55,6 @@ jobs:
             bench build --app posawesome && \
             bench --site erp1.net install-app posawesome && \
             cd /home/frappe/frappe-bench/sites && echo 'erp1.net' >currentsite.txt && \
-            sudo apt-get install screen -y && \
             sudo screen -dmS bench_session bash -c "cd /home/frappe/frappe-bench && bench start"
             exit
             "
