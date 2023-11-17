@@ -19,6 +19,7 @@ jobs:
         password: ${{ secrets.SSH_PASSWORD }}
         # port: 22
         script: |
+            timeout-minutes: 15
             # installing docker
             # sudo apt-get install docker.io -y
 
@@ -33,9 +34,9 @@ jobs:
 
             # navigate to cloned repo
             cd ERPNext 
-
+           
             # CREATE NETWORK
-            docker network create erpnet
+            #docker network create erpnet
 
             # RUN MARIADB CONTAINER.
             docker run -it  --net erpnet --name erpdb -e MYSQL_ROOT_PASSWORD=1QWERT2 -v $(pwd)/conf:/etc/mysql/conf.d -d 1devops2/erpnextdb:14
