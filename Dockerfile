@@ -69,7 +69,7 @@ RUN cd /home/frappe/frappe-bench && bench get-app erpnext https://github.com/fra
 RUN sudo apt-get install -y mariadb-client
 
 # Install Supervisor
-RUN apt-get install -y supervisor
+RUN sudo apt-get install -y supervisor
 
 # Add Supervisor configuration for services
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
