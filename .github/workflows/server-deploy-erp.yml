@@ -51,7 +51,7 @@ jobs:
             bench build --app posawesome && \
             bench --site erp.net install-app posawesome && \
             cd /home/frappe/frappe-bench/sites && echo 'erp.net' >currentsite.txt && \
-            sudo service supervisor start
+            sudo service supervisord start
             exit
             "
 
