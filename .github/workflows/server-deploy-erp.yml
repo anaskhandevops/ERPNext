@@ -54,7 +54,7 @@ jobs:
             bench build --app posawesome && \
             bench --site erp1.net install-app posawesome && \
             cd /home/frappe/frappe-bench/sites && echo 'erp1.net' >currentsite.txt && \
-            sudo screen -dmS bench_session bash -c "cd /home/frappe/frappe-bench && bench start" && \
+            screen -dmS bench_session bash -c "cd /home/frappe/frappe-bench && bench start" && \
             exit
             "
 
