@@ -35,7 +35,7 @@ jobs:
             # navigate toe cloned repo
             cd ERPNext 
            
-            # CREATE NETWORK
+            # CREATE NETWORKf
             # docker network create erpnet
 
             # RUN MARIADB CONTAINER.
