@@ -68,6 +68,11 @@ RUN cd /home/frappe/frappe-bench && bench get-app erpnext https://github.com/fra
 ## STEP-13: Install mariadb client ##
 RUN sudo apt-get install -y mariadb-client
 
+# Install Supervisor
+RUN apt-get install -y supervisor
+
+# Add Supervisor configuration for services
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ## STEP-14: EXpose Ports ##
 EXPOSE 8000 9000 3306
