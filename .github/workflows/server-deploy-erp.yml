@@ -32,7 +32,7 @@ jobs:
             # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition.
             sudo sysctl vm.overcommit_memory=1
 
-            # navigate toe cloned repo
+            # navigate toe cloned repoo
             cd ERPNext 
            
             # CREATE NETWORKf
