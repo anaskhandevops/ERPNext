@@ -2,25 +2,23 @@ version: '3.8'
 
 services:
   erpdb:
-    image: mariadb:latest
+    image: 1devops2/erpnext14-with-github-actions:db
     container_name: erpdb
     environment:
       MARIADB_ROOT_PASSWORD: whitecoke
     volumes:
       - ./conf:/etc/mysql/conf.d
     restart: unless-stopped 
-    ports:
-      - "3306:3306"
 
   erp:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: 1devops2/erpnext14-with-github-actions:app
     container_name: erp
     restart: unless-stopped
     ports:
       - "8000:8000"
       - "9000:9000"
-    # command: ["/bin/bash", "-c", "/home/frappe/frappe-bench/setup-erp.sh"]
+      - "3306:3306"
+    volumes:
+      - ./startup-script:/docker-entrypoint-initdb.d 
     depends_on:
        - erpdb
