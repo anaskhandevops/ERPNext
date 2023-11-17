@@ -17,7 +17,7 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         password: ${{ secrets.SSH_PASSWORD }}
-        # port: 22
+        timeout: 1200
         script: |
             timeout-minutes: 15
             # installing docker
